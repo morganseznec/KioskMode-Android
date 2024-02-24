@@ -17,10 +17,39 @@
         android:text="Second Activity"/>
 
     <Button
+        android:id="@+id/btnState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="Enable"/>
+
+    <Button
+        android:id="@+id/btnUpdateApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="Update App"/>
+
+    <Button
+        android:id="@+id/btnOpenWifiSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Open WiFi Settings" />
+
+    <Button
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:text="Back"/>
+
+    <Button
+        android:id="@+id/btnQuitApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="Quit App" />
+
+
 
 </LinearLayout>

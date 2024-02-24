@@ -1,9 +1,13 @@
 package net.derohimat.kioskmodesample;
 
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.BatteryManager;
 import android.util.Log;
 import android.view.View;
 
@@ -26,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 
             if (mDpm.isDeviceOwnerApp(getPackageName())) {
                 mDpm.setLockTaskPackages(deviceAdmin, new String[]{getPackageName()});
+                //mDpm.setLockTaskPackages(deviceAdmin, new String[]{"com.android.settings", getPackageName()});
             } else {
                 Log.e("Kiosk Mode Error", getString(R.string.not_device_owner));
             }
@@ -71,5 +76,24 @@ public class BaseActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
+
+    private BroadcastReceiver batteryLevelReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+            float batteryPct = level * 100 / (float)scale;
+            // Update your UI with batteryPct value
+        }
+    };
+
+    private BroadcastReceiver timeTickReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Intent.ACTION_TIME_TICK.equals(intent.getAction())) {
+                // Update your time display UI
+            }
+        }
+    };
 
 }
